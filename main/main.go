@@ -31,11 +31,10 @@ func main() {
 		res, err := http.Get(*url)
 
 		if err == nil && res.StatusCode == *responseCode {
-			// check response body
 			if *expectedResponse != "" {
 				defer res.Body.Close()
 				body, _ := ioutil.ReadAll(res.Body)
-				bodyStr :=  string(body)
+				bodyStr :=  strings.Trim(string(body), "\n")
 				if bodyStr == *expectedResponse {
 					fmt.Printf("Response body: %v", bodyStr)
 					os.Exit(0)
