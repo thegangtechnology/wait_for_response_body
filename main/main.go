@@ -31,10 +31,10 @@ func main() {
 
 		if err == nil && res.StatusCode == *responseCode {
 			// check response body
-			if expectedResponse != "" {
+			if *expectedResponse != "" {
 				defer resp.Body.Close()
 				body, err := io.ReadAll(resp.Body)
-				if body == expectedResponse {
+				if body == *expectedResponse {
 					fmt.Printf("Response body: %v", body)
 					os.Exit(0)
 				}
