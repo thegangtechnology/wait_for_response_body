@@ -1,6 +1,6 @@
 # action.yml
 name: 'Wait For Response'
-author: 'Justin Knight'
+author: 'The Gang Tech (forked from Justin Knight)'
 branding:
     icon: 'clock'  
     color: 'blue'

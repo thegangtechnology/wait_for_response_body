@@ -28,10 +28,11 @@ Interval between polling in ms. Default `"200"`
 
 ## Example usage
 ```
-uses: nev7n/wait_for_response@v1
+uses: thegangtechnology/wait_for_response_body@master
 with:
   url: 'http://localhost:8081/'
   responseCode: 200
   timeout: 2000
+  expectedResponse: "latest"
   interval: 500
 ```
