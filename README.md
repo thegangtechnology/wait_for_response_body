@@ -17,6 +17,10 @@ Response code to wait for. Default `"200"`
 
 Timeout before giving up in milliseconds. Default `"30000"`
 
+### `expectedResponse`
+
+Check the response, if it is what we expected. Default `"latest"`
+
 ### `interval`
 
 Interval between polling in ms. Default `"200"`

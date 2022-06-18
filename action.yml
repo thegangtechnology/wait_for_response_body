@@ -18,6 +18,10 @@ inputs:
         description: 'Timeout before giving up in ms'
         required: false
         default: '30000'
+    expectedResponse:
+        description: 'Check the response'
+        required: false
+        default: 'latest'
     interval:
         description: 'Interval between polling in ms'
         required: false

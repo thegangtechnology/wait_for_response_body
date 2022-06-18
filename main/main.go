@@ -14,6 +14,7 @@ func main() {
 	var responseCode = flag.Int("code", 200, "Response code to wait for")
 	var timeout = flag.Int("timeout", 2000, "Timeout before giving up in ms")
 	var interval = flag.Int("interval", 200, "Interval between polling in ms")
+	var expectedResponse = flag.String("expectedResponse", "", "Expected response of the endpoint")
 	var localhost = flag.String("localhost", "", "Ip address to use for localhost")
 	flag.Parse()
 
@@ -26,13 +27,26 @@ func main() {
 		*url = strings.ReplaceAll(*url, "localhost", *localhost)
 	}
 	for {
-		res, err := http.Head(*url)
+		res, err := http.Get(*url)
+
 		if err == nil && res.StatusCode == *responseCode {
-			fmt.Printf("Response header: %v", res)
-			os.Exit(0)
+			// check response body
+			if expectedResponse != "" {
+				defer resp.Body.Close()
+				body, err := io.ReadAll(resp.Body)
+				if body == expectedResponse {
+					fmt.Printf("Response body: %v", body)
+					os.Exit(0)
+				}
+			} else {
+				fmt.Printf("Response header: %v", res)
+				os.Exit(0)
+			}
 		}
+
 		time.Sleep(sleepDuration)
 		elapsed := time.Now().Sub(startTime)
+
 		if elapsed > timeoutDuration {
 			fmt.Printf("Timed out\n")
 			os.Exit(1)
