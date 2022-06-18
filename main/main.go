@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"io/ioutil"
 )
 
 func main() {
@@ -32,10 +33,11 @@ func main() {
 		if err == nil && res.StatusCode == *responseCode {
 			// check response body
 			if *expectedResponse != "" {
-				defer resp.Body.Close()
-				body, err := io.ReadAll(resp.Body)
-				if body == *expectedResponse {
-					fmt.Printf("Response body: %v", body)
+				defer res.Body.Close()
+				body, _ := ioutil.ReadAll(res.Body)
+				bodyStr :=  string(body)
+				if bodyStr == *expectedResponse {
+					fmt.Printf("Response body: %v", bodyStr)
 					os.Exit(0)
 				}
 			} else {
