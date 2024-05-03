@@ -1,3 +1,18 @@
 #!/bin/sh
-hostip=$(ip route show | awk '/default/ {print $3}')
-/app/wait_for_response "-url=$1" "-code=$2" "-timeout=$3" "-interval=$4" "-localhost=${hostip}" "-expectedResponse=$5"
+set -euo pipefail
+if [[ "${INPUT_USEDEFAULTGATEWAY:-}" != "false" ]]
+then
+    server=$(/sbin/ip route show | awk '/default/ {print $3}')
+elif [[ "${INPUT_HOST:-}" != "" ]]
+then
+    server="${INPUT_HOST}"
+fi
+
+/app/wait_for_response \
+    "-url=${INPUT_URL:-}" \
+    "-server=${server:-}" \
+    "-method=${INPUT_METHOD:-}" \
+    "-expectedcode=${INPUT_EXPECTEDCODE:-}" \
+    "-expectedbody=${INPUT_EXPECTEDBODY:-}" \
+    "-timeout=${INPUT_TIMEOUT:-}" \
+    "-interval=${INPUT_INTERVAL:-}"

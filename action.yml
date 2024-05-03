@@ -1,8 +1,8 @@
 # action.yml
 name: 'Wait For Response'
-author: 'The Gang Tech (forked from Justin Knight)'
+author: 'Daniele Valeriani'
 branding:
-    icon: 'clock'  
+    icon: 'clock'
     color: 'blue'
 description: 'Wait for response code from a URL with timeout'
 inputs:
@@ -10,22 +10,34 @@ inputs:
         description: 'URL to poll'
         required: false
         default: 'http://localhost/'
-    responseCode:
-        description: 'Response code to wait for'
+    server:
+        description: 'Hostname or IP address to connect to'
+        required: false
+        default: ''
+    useDefaultGateway:
+        description: 'Use the default gateway as the host to connect to. Useful in containerised environments. Takes precedence over host.'
+        required: false
+        default: 'false'
+    method:
+        description: 'HTTP method to use'
+        required: false
+        default: 'HEAD'
+    expectedCode:
+        description: 'Expected HTTP return code'
         required: false
         default: '200'
+    expectedBody:
+        description: 'Expected body returned by the request'
+        required: false
+        default: ''
     timeout:
         description: 'Timeout before giving up in ms'
         required: false
         default: '30000'
-    expectedResponse:
-        description: 'Check the response'
-        required: false
-        default: 'latest'
     interval:
-        description: 'Interval between polling in ms'
+        description: 'Interval between polls in ms'
         required: false
-        default: 200
+        default: '200'
 outputs:
   result:
     description: '0 if response code returned within timeout, otherwise 1'
@@ -38,3 +50,4 @@ runs:
     - ${{ inputs.timeout }}
     - ${{ inputs.interval }}
     - ${{ inputs.expectedResponse }}
+    - ${{ inputs.host }}
