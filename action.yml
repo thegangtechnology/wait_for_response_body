@@ -46,8 +46,10 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.url }}
-    - ${{ inputs.responseCode }}
+    - ${{ inputs.server }}
+    - ${{ inputs.useDefaultGateway }}
+    - ${{ inputs.method }}
+    - ${{ inputs.expectedCode }}
+    - ${{ inputs.expectedBody }}
     - ${{ inputs.timeout }}
     - ${{ inputs.interval }}
-    - ${{ inputs.expectedResponse }}
-    - ${{ inputs.host }}
