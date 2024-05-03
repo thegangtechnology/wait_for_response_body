@@ -14,8 +14,6 @@ import (
 )
 
 func main() {
-	logrus.SetLevel(logrus.DebugLevel)
-
 	var interval = flag.Int("interval", 200, "Interval between polling in ms")
 	var method = flag.String("method", "HEAD", "HTTP request method")
 	var pollUrl = flag.String("url", "http://localhost/", "URL to poll")
