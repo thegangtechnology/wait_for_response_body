@@ -57,6 +57,7 @@ func main() {
 		logrus.Debugf("Response code - Want: %d - Got: %d", *expectedCode, res.StatusCode)
 		if res.StatusCode != *expectedCode {
 			logrus.Errorf("Invalid response code received: expected %d, got %d", *expectedCode, res.StatusCode)
+			time.Sleep(sleepDuration)
 			continue
 		}
 		b, _ := io.ReadAll(res.Body)
