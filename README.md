@@ -6,7 +6,7 @@ This action makes HTTP requests to a given URL until the required response code 
 
 ### `url`
 
-The URL to poll. Default `"http://localhost/"`
+The URL to poll. Default "http://localhost/"
 
 ### `server`
 
@@ -25,11 +25,11 @@ Response code to wait for. Default: 200
 
 ### `expectedBody`
 
-Check the response, if it is what we expected. Default `""`
+Check the response, if it is what we expected. Default ""
 
 ### `timeout`
 
-Timeout before giving up in milliseconds. Default `"30000"`
+Timeout before giving up in milliseconds. Default 30000
 
 ### `interval`
 
