@@ -1,6 +1,6 @@
 # Build the app
 FROM golang:1.22 as builder
-ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64=value
+ENV CGO_ENABLED=0
 WORKDIR /app
 COPY ./ ./
 RUN go mod download && \
