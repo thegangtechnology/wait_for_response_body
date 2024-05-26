@@ -35,6 +35,10 @@ Timeout before giving up in milliseconds. Default: 30000
 
 Interval between polls in milliseconds. Default: 200
 
+### `debug`
+
+Enable debug logging. Default: false
+
 ## Example usage
 ```
 uses: omame/wait_for_response_body@master
@@ -43,6 +47,6 @@ with:
   useDefaultGateway: true
   responseCode: 200
   timeout: 2000
-  expectedResponse: "latest"
+  expectedResponse: "OK"
   interval: 500
 ```

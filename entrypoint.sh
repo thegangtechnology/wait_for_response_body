@@ -16,3 +16,4 @@ fi
     "-expectedbody=${INPUT_EXPECTEDBODY:-}" \
     "-timeout=${INPUT_TIMEOUT:-}" \
     "-interval=${INPUT_INTERVAL:-}"
+    "-debug=${INPUT_DEBUG:-}"

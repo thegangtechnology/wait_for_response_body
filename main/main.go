@@ -14,14 +14,19 @@ import (
 )
 
 func main() {
+	var debugMode = flag.Bool("debug", false, "Enable debug logging")
+	var expectedBody = flag.String("expectedbody", "", "Expected response of the endpoint")
+	var expectedCode = flag.Int("expectedcode", 200, "Response code to wait for")
 	var interval = flag.Int("interval", 200, "Interval between polling in ms")
 	var method = flag.String("method", "HEAD", "HTTP request method")
 	var pollUrl = flag.String("url", "http://localhost/", "URL to poll")
-	var expectedBody = flag.String("expectedbody", "", "Expected response of the endpoint")
-	var expectedCode = flag.Int("expectedcode", 200, "Response code to wait for")
 	var server = flag.String("server", "", "Ip address/hostname to connect to")
 	var timeout = flag.Int("timeout", 2000, "Timeout before giving up in ms")
 	flag.Parse()
+
+	if *debugMode == true {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
 
 	u, err := url.Parse(*pollUrl)
 	if err != nil {

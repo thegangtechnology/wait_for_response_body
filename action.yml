@@ -1,10 +1,10 @@
 # action.yml
-name: 'Wait For Response'
+name: 'Wait For Response Body'
 author: 'Daniele Valeriani'
 branding:
     icon: 'clock'
     color: 'blue'
-description: 'Wait for response code from a URL with timeout'
+description: 'Wait for response code and/or body from a URL with timeout'
 inputs:
     url:
         description: 'URL to poll'
@@ -38,6 +38,10 @@ inputs:
         description: 'Interval between polls in ms'
         required: false
         default: '200'
+    debug:
+        description: 'Enable debug logging'
+        required: false
+        default: 'false'
 outputs:
   result:
     description: '0 if response code returned within timeout, otherwise 1'
@@ -53,3 +57,4 @@ runs:
     - ${{ inputs.expectedBody }}
     - ${{ inputs.timeout }}
     - ${{ inputs.interval }}
+    - ${{ inputs.debug }}
